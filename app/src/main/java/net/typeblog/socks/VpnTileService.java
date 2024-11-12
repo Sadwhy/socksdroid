@@ -7,7 +7,7 @@ import net.typeblog.socks.util.ProfileManager;
 import net.typeblog.socks.util.Utility;
 
 public class VpnTileService extends TileService {
-    private boolean mRunning = false; // Define and initialize mRunning
+    private boolean mRunning = false;
 
     public boolean isVpnRunning() {
         return mRunning;
@@ -17,19 +17,17 @@ public class VpnTileService extends TileService {
     public void onTileAdded() {
         super.onTileAdded();
             updateTile();
-            isVpnRunning();
         }
-    }
 
     @Override
     public void onClick() {
         super.onClick();
-        if (mRunning) {
+        if (isVpnRunning()) {
             Utility.stopVpn(this);
             mRunning = false;
         } else {
             Profile p = new ProfileManager(this).getDefault();
-            Utility.startVpn(this, p);
+            Utility.sVpn(this, p);
             mRunning = true;
         }
         updateTile();

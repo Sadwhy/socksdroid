@@ -3,6 +3,7 @@ package net.typeblog.socks.util;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.content.ServiceConnection;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -112,9 +113,17 @@ public class Utility {
     }
 
     public static void stopVpn(Context context) {
-        Intent i = new Intent(context, SocksVpnService.class);
-        context.stopService(i);
+    Intent i = new Intent(context, SocksVpnService.class);
+    context.stopService(i);
+    try {
+        if (OtherClass.mConnection != null) {
+            context.unbindService(OtherClass.mConnection);
+            OtherClass.mConnection = null;
+        }
+    } catch (IllegalArgumentException e) {
+        e.printStackTrace();
     }
+}
 
     public static void startVpn(Context context, Profile profile) {
         Intent i = new Intent(context, SocksVpnService.class)
