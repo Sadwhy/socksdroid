@@ -3,9 +3,7 @@ package net.typeblog.socks.util;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.app.Activity;
-import android.content.ServiceConnection;
-import net.typeblog.socks.VpnBinder;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -28,40 +26,6 @@ public class Utility {
         } catch (Exception e) {
             return -1;
         }
-    }
-
-    private static boolean mStopping = false;
-    private static ServiceConnection mConnection;
-    private static VpnBinder mBinder;
-
-    public static void setBinder(VpnBinder binder) {
-        mBinder = binder;
-    }
-
-    public static void setConnection(ServiceConnection connection) {
-        mConnection = connection;
-    }
-
-    public static void stopVpn(Context context) {
-        if (mBinder == null)
-            return;
-
-        mStopping = true;
-
-        try {
-            mBinder.stop();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        mBinder = null;
-
-        activity.unbindService(mConnection);
-        checkState(context);
-    }
-
-    private static void checkState(Context context) {
-        // Your checkState logic here, if applicable
     }
 
     public static void killPidFile(String f) {

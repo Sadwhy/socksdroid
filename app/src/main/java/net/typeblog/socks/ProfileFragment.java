@@ -414,7 +414,7 @@ public class ProfileFragment extends PreferenceFragment implements Preference.On
         }
     }
 
-    private void stopVpn() {
+    public void stopVpn() {
         if (mBinder == null)
             return;
 
