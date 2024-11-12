@@ -27,7 +27,7 @@ public class VpnTileService extends TileService {
             mRunning = false;
         } else {
             Profile p = new ProfileManager(this).getDefault();
-            Utility.sVpn(this, p);
+            Utility.startVpn(this, p);
             mRunning = true;
         }
         updateTile();

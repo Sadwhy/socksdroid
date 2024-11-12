@@ -116,9 +116,9 @@ public class Utility {
     Intent i = new Intent(context, SocksVpnService.class);
     context.stopService(i);
     try {
-        if (OtherClass.mConnection != null) {
-            context.unbindService(OtherClass.mConnection);
-            OtherClass.mConnection = null;
+        if (ProfileFragment.mConnection != null) {
+            context.unbindService(ProfileFragment.mConnection);
+            ProfileFragment.mConnection = null;
         }
     } catch (IllegalArgumentException e) {
         e.printStackTrace();

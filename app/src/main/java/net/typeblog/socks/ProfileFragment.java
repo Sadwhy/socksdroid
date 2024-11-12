@@ -39,7 +39,7 @@ public class ProfileFragment extends PreferenceFragment implements Preference.On
     private Switch mSwitch;
     private boolean mRunning = false;
     private boolean mStarting = false, mStopping = false;
-    public static final ServiceConnection mConnection = new ServiceConnection() {
+    public final ServiceConnection mConnection = new ServiceConnection() {
     @Override
     public void onServiceConnected(ComponentName p1, IBinder binder) {
         mBinder = IVpnService.Stub.asInterface(binder);
