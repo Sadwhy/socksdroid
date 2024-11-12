@@ -40,7 +40,9 @@
         <service
             android:name=".VpnTileService"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
-            android:exported="true">
+            android:exported="true"
+            android:label="SOCKS5"
+            android:icon="@drawable/ic_vpn">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>

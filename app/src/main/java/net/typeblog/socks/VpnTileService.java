@@ -16,18 +16,15 @@ public class VpnTileService extends TileService {
     @Override
     public void onTileAdded() {
         super.onTileAdded();
-        Tile tile = getQsTile();
-        if (tile != null) {
-            tile.setLabel("SOCKS5");
-            // tile.setIcon(Icon.createWithResource(this, R.drawable.your_icon)); // Set the tile icon (commented out)
             updateTile();
+            isVpnRunning();
         }
     }
 
     @Override
     public void onClick() {
         super.onClick();
-        if (isVpnRunning()) {
+        if (mRunning) {
             Utility.stopVpn(this);
             mRunning = false;
         } else {
