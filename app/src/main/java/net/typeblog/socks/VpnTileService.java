@@ -30,7 +30,7 @@ public class VpnTileService extends TileService {
     public void onClick() {
         super.onClick();
         if (isVpnRunning()) { // Corrected to call the method
-            Utility.stopVpn(getActivity());
+            Utility.stopVpn(this;
             mRunning = false; // Update mRunning when VPN is stopped
         } else {
             Profile p = new ProfileManager(this).getDefault();

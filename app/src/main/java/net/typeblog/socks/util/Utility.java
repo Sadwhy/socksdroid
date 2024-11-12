@@ -3,7 +3,9 @@ package net.typeblog.socks.util;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-
+import android.app.Activity;
+import android.content.ServiceConnection;
+import net.typeblog.socks.VpnBinder;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -40,7 +42,7 @@ public class Utility {
         mConnection = connection;
     }
 
-    public static void stopVpn(Activity activity) {
+    public static void stopVpn(Context context) {
         if (mBinder == null)
             return;
 
@@ -55,10 +57,10 @@ public class Utility {
         mBinder = null;
 
         activity.unbindService(mConnection);
-        checkState(activity);
+        checkState(context);
     }
 
-    private static void checkState(Activity activity) {
+    private static void checkState(Context context) {
         // Your checkState logic here, if applicable
     }
 
