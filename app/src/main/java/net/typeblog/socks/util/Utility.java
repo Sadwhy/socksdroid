@@ -14,6 +14,7 @@ import java.util.List;
 
 import net.typeblog.socks.R;
 import net.typeblog.socks.SocksVpnService;
+import net.typeblog.socks.ProfileFragment;
 import static net.typeblog.socks.util.Constants.*;
 
 public class Utility {
