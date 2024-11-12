@@ -207,6 +207,11 @@ public class ProfileFragment extends PreferenceFragment implements Preference.On
         }
     }
 
+    @Override
+    public boolean isVpnRunning() {
+        return mRunning;
+    }
+
     private void initPreferences() {
         mPrefProfile = (ListPreference) findPreference(PREF_PROFILE);
         mPrefServer = (EditTextPreference) findPreference(PREF_SERVER_IP);
