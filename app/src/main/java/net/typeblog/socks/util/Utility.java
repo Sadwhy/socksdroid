@@ -28,6 +28,40 @@ public class Utility {
         }
     }
 
+    private static boolean mStopping = false;
+    private static ServiceConnection mConnection;
+    private static VpnBinder mBinder;
+
+    public static void setBinder(VpnBinder binder) {
+        mBinder = binder;
+    }
+
+    public static void setConnection(ServiceConnection connection) {
+        mConnection = connection;
+    }
+
+    public static void stopVpn(Activity activity) {
+        if (mBinder == null)
+            return;
+
+        mStopping = true;
+
+        try {
+            mBinder.stop();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        mBinder = null;
+
+        activity.unbindService(mConnection);
+        checkState(activity);
+    }
+
+    private static void checkState(Activity activity) {
+        // Your checkState logic here, if applicable
+    }
+
     public static void killPidFile(String f) {
         File file = new File(f);
 

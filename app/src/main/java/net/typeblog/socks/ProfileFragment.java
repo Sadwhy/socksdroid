@@ -207,7 +207,6 @@ public class ProfileFragment extends PreferenceFragment implements Preference.On
         }
     }
 
-    @Override
     public boolean isVpnRunning() {
         return mRunning;
     }
