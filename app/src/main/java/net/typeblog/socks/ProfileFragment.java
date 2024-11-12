@@ -40,31 +40,27 @@ public class ProfileFragment extends PreferenceFragment implements Preference.On
     private boolean mRunning = false;
     private boolean mStarting = false, mStopping = false;
     public static final ServiceConnection mConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName p1, IBinder binder) {
-            mBinder = IVpnService.Stub.asInterface(binder);
-    
-            try {
-                mRunning = mBinder.isRunning();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-    
-            if (mRunning) {
-                updateState();
-            }
+    @Override
+    public void onServiceConnected(ComponentName p1, IBinder binder) {
+        mBinder = IVpnService.Stub.asInterface(binder);
+
+        try {
+            mRunning = mBinder.isRunning();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        if (mRunning) {
+            updateState();
+        }
+    }
 
     @Override
     public void onServiceDisconnected(ComponentName p1) {
         mBinder = null;
     }
 };
-        @Override
-        public void onServiceDisconnected(ComponentName p1) {
-            mBinder = null;
-        }
-    };
+
     private final Runnable mStateRunnable = new Runnable() {
         @Override
         public void run() {
