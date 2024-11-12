@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,8 +25,22 @@ jobs:
       - name: Build release APK
         run: ./gradlew assembleRelease
 
-      - name: Upload APK
+      - name: Create debug keystore
+        run: |
+          keytool -genkeypair -v -keystore debug.keystore -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=Android Debug,O=Android,C=US" -alias androiddebugkey
+
+      - name: Sign APK with debug key
+        uses: r0adkll/sign-apk@v1.0.0
+        with:
+          unsigned-apk: app/build/outputs/apk/release/app-release-unsigned.apk
+          signed-apk: app/build/outputs/apk/release/app-release-signed.apk
+          keystore-path: debug.keystore
+          keystore-password: android
+          key-alias: androiddebugkey
+          key-password: android
+
+      - name: Upload signed APK
         uses: actions/upload-artifact@v3
         with:
-          name: release-apk
-          path: app/build/outputs
+          name: signed-apk
+          path: app/build/outputs/apk/release/app-release-signed.apk
