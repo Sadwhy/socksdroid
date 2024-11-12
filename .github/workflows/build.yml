@@ -31,16 +31,6 @@ jobs:
           BASE64=$(base64 debug.keystore)
           echo "KEYSTORE=$BASE64" >> $GITHUB_ENV
 
-      - name: Sign APK with debug key
-        uses: r0adkll/sign-apk@v1.0.0
-        with:
-          unsigned-apk: app/build/outputs/apk/release/app-release-unsigned.apk
-          signed-apk: app/build/outputs/apk/release/app-release-signed.apk
-          keystore-path: debug.keystore
-          keystore-password: android
-          key-alias: androiddebugkey
-          key-password: android
-
       - name: Sign APK
         uses: r0adkll/sign-android-release@v1
         with:
