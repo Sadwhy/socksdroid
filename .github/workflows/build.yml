@@ -28,7 +28,7 @@ jobs:
       - name: Create debug keystore
         run: |
           keytool -genkeypair -v -keystore debug.keystore -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=Android Debug,O=Android,C=US" -alias androiddebugkey
-          BASE64=$(base64 debug.keystore)
+          BASE64="$(base64 debug.keystore)"
           echo "KEYSTORE=$BASE64" >> $GITHUB_ENV
 
       - name: Sign APK
