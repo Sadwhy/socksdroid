@@ -13,35 +13,31 @@ public class VpnTileService extends TileService {
         return mRunning;
     }
 
-    // Called when the user adds the tile
     @Override
     public void onTileAdded() {
         super.onTileAdded();
         Tile tile = getQsTile();
         if (tile != null) {
-            tile.setLabel("SOCKS5"); // Set the tile label to "SOCKS5"
+            tile.setLabel("SOCKS5");
             // tile.setIcon(Icon.createWithResource(this, R.drawable.your_icon)); // Set the tile icon (commented out)
             updateTile();
         }
     }
 
-    // Called when the tile is clicked
     @Override
     public void onClick() {
         super.onClick();
-        if (isVpnRunning()) { // Corrected to call the method
-            ProfileFragment serviceInstance = new ProfileFragment();
-            serviceInstance.stopVpn();
-            mRunning = false; // Update mRunning when VPN is stopped
+        if (isVpnRunning()) {
+            Utility.stopVpn(this);
+            mRunning = false;
         } else {
             Profile p = new ProfileManager(this).getDefault();
             Utility.startVpn(this, p);
-            mRunning = true; // Update mRunning when VPN is started
+            mRunning = true;
         }
-        updateTile(); // Update tile state after changing VPN status
+        updateTile();
     }
 
-    // Update the tile to reflect the VPN status
     private void updateTile() {
         Tile tile = getQsTile();
         if (tile != null) {

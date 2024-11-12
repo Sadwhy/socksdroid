@@ -111,6 +111,11 @@ public class Utility {
         }
     }
 
+    public static void stopVpn(Context context) {
+        Intent i = new Intent(context, SocksVpnService.class);
+        context.stopService(i);
+    }
+
     public static void startVpn(Context context, Profile profile) {
         Intent i = new Intent(context, SocksVpnService.class)
                 .putExtra(INTENT_NAME, profile.getName())

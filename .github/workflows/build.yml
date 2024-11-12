@@ -30,6 +30,7 @@ jobs:
           keytool -genkeypair -v -keystore debug.keystore -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=Android Debug,O=Android,C=US" -alias androiddebugkey
           echo "$(base64 debug.keystore)" >> keystore.txt
 
+
       - name: Sign APK
         uses: r0adkll/sign-android-release@v1
         with:
@@ -40,10 +41,11 @@ jobs:
           keyPassword: android
         env:
           BUILD_TOOLS_VERSION: "34.0.0"
+       continue-on-error: true
 
 
       - name: Upload signed APK
         uses: actions/upload-artifact@v3
         with:
           name: signed-apk
-          path: app/build/outputs/apk/release/app-release-signed.apk
+          path: app/build/outputs/apk/release/*.apk
