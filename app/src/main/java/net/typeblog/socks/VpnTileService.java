@@ -2,6 +2,7 @@ package net.typeblog.socks;
 
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
+import net.typeblog.socks.ProfileFragment;
 import net.typeblog.socks.util.Profile;
 import net.typeblog.socks.util.ProfileManager;
 import net.typeblog.socks.util.Utility;
@@ -23,7 +24,7 @@ public class VpnTileService extends TileService {
     public void onClick() {
         super.onClick();
         if (isVpnRunning()) {
-            Utility.stopVpn(this);
+            ProfileFragment.getInstance().stopVpn();
             mRunning = false;
         } else {
             Profile p = new ProfileManager(this).getDefault();

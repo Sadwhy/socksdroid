@@ -2,6 +2,7 @@ package net.typeblog.socks;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -414,6 +415,17 @@ public class ProfileFragment extends PreferenceFragment implements Preference.On
             onActivityResult(0, Activity.RESULT_OK, null);
         }
     }
+
+    private ProfileFragment() {}
+
+    // Static method to get the singleton instance
+    public static ProfileFragment getInstance() {
+        if (instance == null) {
+            instance = new ProfileFragment();
+        }
+        return instance;
+    }
+
 
     public void stopVpn() {
         if (mBinder == null)
