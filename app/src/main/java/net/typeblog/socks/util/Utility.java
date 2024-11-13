@@ -113,6 +113,20 @@ public class Utility {
         }
     }
 
+public static void stopVpn(Context context) {
+    Intent i = new Intent(context, SocksVpnService.class);
+    context.stopService(i);
+
+    try {
+        ProfileFragment profileFragment = new ProfileFragment(); // Create an instance of ProfileFragment
+        if (profileFragment.mConnection != null) {
+            context.unbindService(profileFragment.mConnection);
+            profileFragment.mConnection = null;
+        }
+    } catch (IllegalArgumentException e) {
+        e.printStackTrace();
+    }
+}
 
     public static void startVpn(Context context, Profile profile) {
         Intent i = new Intent(context, SocksVpnService.class)

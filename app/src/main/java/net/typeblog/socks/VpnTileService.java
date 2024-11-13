@@ -24,7 +24,7 @@ public class VpnTileService extends TileService {
     public void onClick() {
         super.onClick();
         if (isVpnRunning()) {
-            ProfileFragment.getInstance().stopVpn();
+            Utility.stopVpn(this);
             mRunning = false;
         } else {
             Profile p = new ProfileManager(this).getDefault();

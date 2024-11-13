@@ -416,17 +416,6 @@ public class ProfileFragment extends PreferenceFragment implements Preference.On
         }
     }
 
-    private ProfileFragment() {}
-
-    // Static method to get the singleton instance
-    public static ProfileFragment getInstance() {
-        if (instance == null) {
-            instance = new ProfileFragment();
-        }
-        return instance;
-    }
-
-
     public void stopVpn() {
         if (mBinder == null)
             return;
