@@ -118,10 +118,9 @@ public static void stopVpn(Context context) {
     context.stopService(i);
 
     try {
-        ProfileFragment profileFragment = new ProfileFragment(); // Create an instance of ProfileFragment
+        ProfileFragment profileFragment = new ProfileFragment();
         if (profileFragment.mConnection != null) {
             context.unbindService(profileFragment.mConnection);
-            profileFragment.mConnection = null;
         }
     } catch (IllegalArgumentException e) {
         e.printStackTrace();
