@@ -113,7 +113,7 @@ public class Utility {
         }
     }
 
-    public static void stopVpn(Context context) {
+    public void stopVpn(Context context) {
     Intent i = new Intent(context, SocksVpnService.class);
     context.stopService(i);
     try {
